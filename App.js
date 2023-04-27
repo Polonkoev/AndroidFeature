@@ -1,5 +1,5 @@
-import { useState } from "react";
-import React from "react";
+import { useState, useEffect } from "react";
+
 import {
   StyleSheet,
   Text,
@@ -11,15 +11,57 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+
+const initialState = {
+  email: "",
+  password: "",
+};
+
+const loadApplication = async () => {
+  await Font.loadAsync({
+    RobotoReqular: require("./assets/fonts/Roboto/roboto-regular.ttf"),
+    RobotoBold: require("./assets/fonts/Roboto/roboto-bold.ttf"),
+    LobsterReqular: require("./assets/fonts/Lobster/Lobster-Regular.ttf"),
+  });
+};
 
 export default function App() {
   console.log("Действие на: ", Platform.OS);
   const [isSownKeyboard, setIsSownKeyboard] = useState(false);
+  const [state, setState] = useState(initialState);
+  const [isReady, setIsReady] = useState(false);
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
   const keyboardHide = () => {
     setIsSownKeyboard(false);
     Keyboard.dismiss();
+    setState(initialState);
   };
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 20 * 2;
+      console.log("WIDTH", width);
+    };
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
+
+  if (!isReady) {
+    return (
+      <AppLoading
+        startAsync={loadApplication}
+        onFinish={() => setIsReady(true)}
+        onError={console.warn}
+      />
+    );
+  }
   return (
     <TouchableWithoutFeedback onPress={keyboardHide}>
       <View style={styles.container}>
@@ -34,6 +76,7 @@ export default function App() {
               style={{
                 ...styles.form,
                 marginBottom: isSownKeyboard ? 20 : 100,
+                width: dimensions,
               }}
             >
               <View style={styles.header}>
@@ -46,6 +89,10 @@ export default function App() {
                   style={styles.input}
                   textAlign={"center"}
                   onFocus={() => setIsSownKeyboard(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, email: value }))
+                  }
+                  value={state.email}
                 />
                 <View style={{ marginTop: 20 }}>
                   <Text style={styles.inputTitle}>PASSWORD</Text>
@@ -55,6 +102,13 @@ export default function App() {
                     secureTextEntry={true}
                     color={"#fff"}
                     onFocus={() => setIsSownKeyboard(true)}
+                    onChangeText={(value) =>
+                      setState((prevState) => ({
+                        ...prevState,
+                        password: value,
+                      }))
+                    }
+                    value={state.password}
                   />
                 </View>
               </View>
@@ -97,6 +151,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "repeat",
     justifyContent: "flex-end",
+    alignItems: "center",
   },
   input: {
     borderWidth: 1,
@@ -107,13 +162,14 @@ const styles = StyleSheet.create({
     color: "#00ffff",
   },
   form: {
-    marginHorizontal: 40,
+    // marginHorizontal: 40,
     marginBottom: 100,
   },
   inputTitle: {
     color: "#00ffff",
     marginBottom: 10,
     fontSize: 18,
+    fontFamily: "RobotoReqular",
   },
   btn: {
     ...Platform.select({
@@ -158,5 +214,6 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 30,
     color: "#00ffff",
+    fontFamily: "LobsterReqular",
   },
 });
