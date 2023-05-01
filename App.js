@@ -15,6 +15,7 @@ import {
 } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+import { RegistrationScreen } from "./Screens/RegistrationScreen";
 
 const initialState = {
   email: "",
@@ -63,67 +64,68 @@ export default function App() {
     );
   }
   return (
-    <TouchableWithoutFeedback onPress={keyboardHide}>
-      <View style={styles.container}>
-        <ImageBackground
-          style={styles.image}
-          source={require("./img/images/darkSpace.jpg")}
-        >
-          <KeyboardAvoidingView
-            behavior={Platform.OS === "ios" ? "padding" : "margin"}
-          >
-            <View
-              style={{
-                ...styles.form,
-                marginBottom: isSownKeyboard ? 20 : 100,
-                width: dimensions,
-              }}
-            >
-              <View style={styles.header}>
-                <Text style={styles.headerTitle}>Hello again</Text>
-                <Text style={styles.headerTitle}>Welcome back</Text>
-              </View>
-              <View>
-                <Text style={styles.inputTitle}>EMAIL ADDRES</Text>
-                <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
-                  onFocus={() => setIsSownKeyboard(true)}
-                  onChangeText={(value) =>
-                    setState((prevState) => ({ ...prevState, email: value }))
-                  }
-                  value={state.email}
-                />
-                <View style={{ marginTop: 20 }}>
-                  <Text style={styles.inputTitle}>PASSWORD</Text>
-                  <TextInput
-                    style={styles.input}
-                    textAlign={"center"}
-                    secureTextEntry={true}
-                    color={"#fff"}
-                    onFocus={() => setIsSownKeyboard(true)}
-                    onChangeText={(value) =>
-                      setState((prevState) => ({
-                        ...prevState,
-                        password: value,
-                      }))
-                    }
-                    value={state.password}
-                  />
-                </View>
-              </View>
-              <TouchableOpacity
-                style={styles.btn}
-                activeOpacity={0.8}
-                onPress={() => keyboardHide()}
-              >
-                <Text style={styles.btnTitle}>SIGN IN</Text>
-              </TouchableOpacity>
-            </View>
-          </KeyboardAvoidingView>
-        </ImageBackground>
-      </View>
-    </TouchableWithoutFeedback>
+    <RegistrationScreen></RegistrationScreen>
+    //   <TouchableWithoutFeedback onPress={keyboardHide}>
+    //     <View style={styles.container}>
+    //       <ImageBackground
+    //         style={styles.image}
+    //         source={require("./img/images/darkSpace.jpg")}
+    //       >
+    //         <KeyboardAvoidingView
+    //           behavior={Platform.OS === "ios" ? "padding" : "margin"}
+    //         >
+    //           <View
+    //             style={{
+    //               ...styles.form,
+    //               marginBottom: isSownKeyboard ? 20 : 100,
+    //               width: dimensions,
+    //             }}
+    //           >
+    //             <View style={styles.header}>
+    //               <Text style={styles.headerTitle}>Hello</Text>
+    //               <Text style={styles.headerTitle}>Wellcome again</Text>
+    //             </View>
+    //             <View>
+    //               <Text style={styles.inputTitle}>EMAIL ADDRES</Text>
+    //               <TextInput
+    //                 style={styles.input}
+    //                 textAlign={"center"}
+    //                 onFocus={() => setIsSownKeyboard(true)}
+    //                 onChangeText={(value) =>
+    //                   setState((prevState) => ({ ...prevState, email: value }))
+    //                 }
+    //                 value={state.email}
+    //               />
+    //               <View style={{ marginTop: 20 }}>
+    //                 <Text style={styles.inputTitle}>PASSWORD</Text>
+    //                 <TextInput
+    //                   style={styles.input}
+    //                   textAlign={"center"}
+    //                   secureTextEntry={true}
+    //                   color={"#fff"}
+    //                   onFocus={() => setIsSownKeyboard(true)}
+    //                   onChangeText={(value) =>
+    //                     setState((prevState) => ({
+    //                       ...prevState,
+    //                       password: value,
+    //                     }))
+    //                   }
+    //                   value={state.password}
+    //                 />
+    //               </View>
+    //             </View>
+    //             <TouchableOpacity
+    //               style={styles.btn}
+    //               activeOpacity={0.8}
+    //               onPress={() => keyboardHide()}
+    //             >
+    //               <Text style={styles.btnTitle}>SIGN IN</Text>
+    //             </TouchableOpacity>
+    //           </View>
+    //         </KeyboardAvoidingView>
+    //       </ImageBackground>
+    //     </View>
+    //   </TouchableWithoutFeedback>
   );
 }
 
