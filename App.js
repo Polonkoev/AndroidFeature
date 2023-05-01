@@ -13,7 +13,7 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
 } from "react-native";
-import * as Font from "expo-font";
+// import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { RegistrationScreen } from "./Screens/RegistrationScreen";
 
@@ -22,47 +22,47 @@ const initialState = {
   password: "",
 };
 
-const loadApplication = async () => {
-  await Font.loadAsync({
-    RobotoReqular: require("./assets/fonts/Roboto/roboto-regular.ttf"),
-    RobotoBold: require("./assets/fonts/Roboto/roboto-bold.ttf"),
-    LobsterReqular: require("./assets/fonts/Lobster/Lobster-Regular.ttf"),
-  });
-};
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     RobotoReqular: require("./assets/fonts/Roboto/roboto-regular.ttf"),
+//     RobotoBold: require("./assets/fonts/Roboto/roboto-bold.ttf"),
+//     LobsterReqular: require("./assets/fonts/Lobster/Lobster-Regular.ttf"),
+//   });
+// };
 
 export default function App() {
   console.log("Действие на: ", Platform.OS);
-  const [isSownKeyboard, setIsSownKeyboard] = useState(false);
-  const [state, setState] = useState(initialState);
-  const [isReady, setIsReady] = useState(false);
-  const [dimensions, setDimensions] = useState(
-    Dimensions.get("window").width - 20 * 2
-  );
-  const keyboardHide = () => {
-    setIsSownKeyboard(false);
-    Keyboard.dismiss();
-    setState(initialState);
-  };
-  useEffect(() => {
-    const onChange = () => {
-      const width = Dimensions.get("window").width - 20 * 2;
-      console.log("WIDTH", width);
-    };
-    Dimensions.addEventListener("change", onChange);
-    return () => {
-      Dimensions.removeEventListener("change", onChange);
-    };
-  }, []);
+  // const [isSownKeyboard, setIsSownKeyboard] = useState(false);
+  // const [state, setState] = useState(initialState);
+  // const [isReady, setIsReady] = useState(false);
+  // const [dimensions, setDimensions] = useState(
+  //   Dimensions.get("window").width - 20 * 2
+  // );
+  // const keyboardHide = () => {
+  //   setIsSownKeyboard(false);
+  //   Keyboard.dismiss();
+  //   setState(initialState);
+  // };
+  // useEffect(() => {
+  //   const onChange = () => {
+  //     const width = Dimensions.get("window").width - 20 * 2;
+  //     console.log("WIDTH", width);
+  //   };
+  //   Dimensions.addEventListener("change", onChange);
+  //   return () => {
+  //     Dimensions.removeEventListener("change", onChange);
+  //   };
+  // }, []);
 
-  if (!isReady) {
-    return (
-      <AppLoading
-        startAsync={loadApplication}
-        onFinish={() => setIsReady(true)}
-        onError={console.warn}
-      />
-    );
-  }
+  // if (!isReady) {
+  //   return (
+  //     <AppLoading
+  //       startAsync={loadApplication}
+  //       onFinish={() => setIsReady(true)}
+  //       onError={console.warn}
+  //     />
+  //   );
+  // }
   return (
     <RegistrationScreen></RegistrationScreen>
     //   <TouchableWithoutFeedback onPress={keyboardHide}>
