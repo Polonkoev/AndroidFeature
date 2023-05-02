@@ -12,6 +12,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Dimensions,
+  StatusBar,
 } from "react-native";
 // import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
@@ -32,6 +33,7 @@ const initialState = {
 
 export default function App() {
   console.log("Действие на: ", Platform.OS);
+
   // const [isSownKeyboard, setIsSownKeyboard] = useState(false);
   // const [state, setState] = useState(initialState);
   // const [isReady, setIsReady] = useState(false);
@@ -64,7 +66,11 @@ export default function App() {
   //   );
   // }
   return (
-    <RegistrationScreen></RegistrationScreen>
+    <View style={styles.container}>
+      <StatusBar theme={"auto"} />
+      <RegistrationScreen></RegistrationScreen>
+    </View>
+
     //   <TouchableWithoutFeedback onPress={keyboardHide}>
     //     <View style={styles.container}>
     //       <ImageBackground

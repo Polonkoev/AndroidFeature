@@ -90,8 +90,5 @@ export const styles = StyleSheet.create({
 
     color: "#1B4371",
   },
-  showPass: {
-    borderColor: "red",
-    borderWidth: 1,
-  },
+  showPass: {},
 });
