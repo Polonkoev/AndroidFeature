@@ -18,18 +18,15 @@ export const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: "cover",
     justifyContent: "flex-end",
-    alignItems: "center",
   },
   inputWrapper: {
     width: "100%",
 
     height: 574,
-    backgroundColor: "#ffffff",
+    // backgroundColor: "#ffffff",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
-    // overflow: "hidden",
   },
 
   avatarWrapper: {
@@ -90,5 +87,35 @@ export const styles = StyleSheet.create({
 
     color: "#1B4371",
   },
-  showPass: {},
+
+  //SignUpBtn
+  signUpBtn: {
+    height: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#FF6C00",
+    marginHorizontal: 16,
+    marginTop: 43,
+    borderRadius: 100,
+  },
+  signUpTitle: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  // Login
+
+  login: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 16,
+  },
+  loginQues: {
+    fontSize: 16,
+    color: "#1B4371",
+  },
+  loginBtn: {
+    fontSize: 16,
+    color: "#1B4371",
+  },
 });

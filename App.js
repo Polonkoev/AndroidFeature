@@ -67,7 +67,7 @@ export default function App() {
   // }
   return (
     <View style={styles.container}>
-      <StatusBar theme={"auto"} />
+      {/* <StatusBar theme={"auto"} /> */}
       <RegistrationScreen></RegistrationScreen>
     </View>
 
